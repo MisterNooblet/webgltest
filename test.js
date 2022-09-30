@@ -28,7 +28,7 @@ alert('Hello ' + playerName + ' lets play a game of Hangman (X.X) Shall we?');
 //The main function runs in a loop untill one of the conditions is met > loss || victory
 function mainGame(){
     for (bloopers = 0; bloopers < 11; bloopers) {
-        remove(prompt("Mistakes:" + bloopers + "/" + maxBloopers + " \nAvailable letters:" + letters + "\n" + wordStatus));
+        remove(prompt("Mistakes:" + bloopers + "/" + maxBloopers + " \nAvailable letters:" + letters + "\n" + wordStatus).toLowerCase());
         //console.log(solution);
         //console.log(wordStatus)
 
