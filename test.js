@@ -1,6 +1,13 @@
 'use strict';
 
-//Hangman game - By Artyom Ribakov / Appleseeds pre-bootcamp.
+/*
+Hangman game - By Artyom Ribakov / Appleseeds pre-bootcamp.
+This version Interacts with the user using Prompts and alerts in a loop.
+Geek mode challange done. 
+Please run it through an index.html including this code in a js.
+Live version for making your life easier- https://thehollow.xyz/
+Pushed:03/10/22 20:08
+*/
 
 //A bank of words to pick from
 var wordbank = [
@@ -131,6 +138,6 @@ wordStatus = solution.split('').map(letter => (guessed.indexOf(letter) >= 0 ? le
   
 }
 //Game initialization
-  randomWord();
-  guessedWord();
-  mainGame();
+randomWord();
+guessedWord();
+mainGame();
