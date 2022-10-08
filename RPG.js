@@ -120,51 +120,7 @@ function mainGame(){
                     alert(`⚠️You've encountered a boss : ${descision} you must fight for your life!`)
                     fightmob();
                 }else if(occurence === rewards){
-                    alert(`💰You've found a Chest and in it you find a ${descision}!`)
-                    if(descision === 'Bronze Sword' && weaponclass < 1){
-                        equipitem();
-                        alert(`You equip the ${descision}`);
-                        weaponbonus += 3;
-                        weaponclass = 1;
-                        playerdmg = ((LVL + strenght)* 3)+weaponbonus;
-                    }else if(descision === 'Bronze Sword' && weaponclass >=1){
-                        discarditem();
-                    }else if(descision === 'Steel Sword' && weaponclass < 3){
-                        equipitem();
-                        alert(`You equip the ${descision}`);
-                        weaponbonus = 0;
-                        weaponbonus += 6;
-                        playerdmg = ((LVL + strenght)* 3)+weaponbonus;
-                    }else if(descision === 'Steel Sword' && weaponclass == 3){
-                        discarditem();
-                    }else if(descision === 'Diamond Sword'){
-                        equipitem();
-                        alert(`You equip the ${descision}`);
-                        weaponbonus = 0;
-                        weaponbonus += 11;
-                        playerdmg = ((LVL + strenght)* 3)+weaponbonus;
-                    }else if(descision === 'Bronze Armour' && armorclass <1){
-                        equiparmour();
-                        alert(`You equip the ${descision}`);
-                        armorbonus += 3;
-                        armorclass = 1;
-                    }else if(descision === 'Bronze Armour' && armorclass >=1){
-                        discarditem();
-                    }else if(descision === 'Steel Armour' && armorclass < 3){
-                        equiparmour();
-                        alert(`You equip the ${descision}`);
-                        armorbonus = 0;
-                        armorbonus += 6;
-                    }else if(descision === 'Steel Armour' && armorclass == 3){
-                        discarditem();
-                    }else if(descision === 'Diamond Armour'){
-                        equiparmour();
-                        alert(`You equip the ${descision}`);
-                        armorbonus = 0;
-                        armorbonus += 11;
-                    }else{
-                        movetoinventory();
-                    }
+                    rewardsmanager();
                 }else if(occurence === traps){
                     alert(`🪤You've encountered a trap and you take ${maxHP * 0.1} ${descision}!`)
                     HP -= maxHP * 0.1;
@@ -173,7 +129,7 @@ function mainGame(){
         }
     }
     
-    function fleeorfight(){
+    function fleeorfight(){//dialog before fighting a common enemy or running from it
     generatemobstats();
         fightdialog1=prompt(`You've encountered a ${descision} !fight - to fight !run - to attempt an escape`)
         if(fightdialog1==='!fight'){
@@ -187,14 +143,14 @@ function mainGame(){
 
 }
 
-function generatemobstats(multiplier){
+function generatemobstats(multiplier){//generates the enemy stats according to the given formula "multiplier"
     mobdef = 1 * multiplier
     mobhp = 20 * multiplier
     mobmaxhp = 20 * multiplier
     mobstr = 1 * multiplier
     mobdmg = (mobstr + LVL) * 2;
 }
-function fightmob(){
+function fightmob(){//main combat manager
     let multiplier = LVL * 1;
     if (occurence === bosses) {
         multiplier = LVL * 2
@@ -266,6 +222,10 @@ function fightmob(){
         }else{
             alert(`Not enough RAGE!`)
         }
+    }else if(fightdialog==='!heal'){
+        healme();
+    }else if(fightdialog==='!enrage'){
+        enrageme();
     }
     else{
         alert('invalid command!')
@@ -331,7 +291,7 @@ function movetoinventory(){ //Move the item we found from rewards array to inven
 
 function equipitem(){ //Equip the item we just got (called from main  game function)
     let index = rewards.indexOf(descision);
-    alert(`You equip the${descision} it might come in handy!`)
+    alert(`You pick up the ${descision} it might come in handy!`)
         rewards.splice(index, 1);
         eqweapon.length = 0;
         eqweapon.indexOf(descision) === -1 ? eqweapon.push(descision) : null;
@@ -352,7 +312,7 @@ function discarditem(){ //A function to be executed if the found item is of a lo
         You leave it behind...`)
 }
 
-function healme(){
+function healme(){//consumes a health potion to heal the player if hp is below max hp and there is a potion avail
     let index = inventory.indexOf('Health Serum');
     if(index>-1 && HP<maxHP){
         inventory.splice(index,1);
@@ -368,7 +328,7 @@ function healme(){
         }
 }
 
-function enrageme(){
+function enrageme(){//consumes a rage potion to enrage the player if rage is below 100 and there is a potion at hand
     let index2 = inventory.indexOf('RAGE Serum');
     if(index2>-1 && RAGE<maxRAGE){
         inventory.splice(index2,1);
@@ -382,4 +342,53 @@ function enrageme(){
         }else{
             alert(`You reach out in your inventory for a serum but it seems there are none...`)
         }
+}
+
+function rewardsmanager(){//manages and decides what to do with rewards found from rewards array.
+    alert(`💰You've found a Chest and in it you find a ${descision}!`)
+                    if(descision === 'Bronze Sword' && weaponclass < 1){
+                        equipitem();
+                        alert(`You equip the ${descision}`);
+                        weaponbonus += 3;
+                        weaponclass = 1;
+                        playerdmg = ((LVL + strenght)* 3)+weaponbonus;
+                    }else if(descision === 'Bronze Sword' && weaponclass >=1){
+                        discarditem();
+                    }else if(descision === 'Steel Sword' && weaponclass < 3){
+                        equipitem();
+                        alert(`You equip the ${descision}`);
+                        weaponbonus = 0;
+                        weaponbonus += 6;
+                        playerdmg = ((LVL + strenght)* 3)+weaponbonus;
+                    }else if(descision === 'Steel Sword' && weaponclass == 3){
+                        discarditem();
+                    }else if(descision === 'Diamond Sword'){
+                        equipitem();
+                        alert(`You equip the ${descision}`);
+                        weaponbonus = 0;
+                        weaponbonus += 11;
+                        playerdmg = ((LVL + strenght)* 3)+weaponbonus;
+                    }else if(descision === 'Bronze Armour' && armorclass <1){
+                        equiparmour();
+                        alert(`You equip the ${descision}`);
+                        armorbonus += 3;
+                        armorclass = 1;
+                    }else if(descision === 'Bronze Armour' && armorclass >=1){
+                        discarditem();
+                    }else if(descision === 'Steel Armour' && armorclass < 3){
+                        equiparmour();
+                        alert(`You equip the ${descision}`);
+                        armorbonus = 0;
+                        armorbonus += 6;
+                    }else if(descision === 'Steel Armour' && armorclass == 3){
+                        discarditem();
+                    }else if(descision === 'Diamond Armour'){
+                        equiparmour();
+                        alert(`You equip the ${descision}`);
+                        armorbonus = 0;
+                        armorbonus += 11;
+                    }else{
+                        alert(`You pick up the ${descision} it might come in handy..`)
+                        movetoinventory();
+                    }
 }
