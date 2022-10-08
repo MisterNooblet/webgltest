@@ -262,15 +262,15 @@ function levelManager(){ //Manages player level.(executed after a player kills s
         LVL++;
         maxHP =(LVL * 100) + (defence * 6);
         HP = maxHP;
-        maxxp = LVL * 130;
-        SP += 3;
-        alert(`Congratulations ${playerName} you have advanced to level ${LVL} and have gained 3 Skillpoints.`)
+        maxxp = LVL * 130 * 1.3;
+        SP += 1;
+        alert(`Congratulations ${playerName} you have advanced to level ${LVL} and have gained 1 Skillpoints.`)
     }
 }
 
 function rageManager(){ // manages rage
     if(RAGE < maxRAGE && RAGE != 100){
-        RAGE += (Anger * 2) + LVL;
+        RAGE += (Anger * 2);
         if(RAGE >= 100){
             RAGE = 100;
         }
