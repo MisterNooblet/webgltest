@@ -2,6 +2,7 @@
 let playerName = prompt('Hello player welcome to 👣 100 STEPS 👣 what should we call you?')
 let LVL = 1;
 //let dexterity = 5;
+let maxxpmultiplier = 1;
 let defence = 5;
 let armorbonus = 0;
 let weaponbonus = 0;
@@ -146,6 +147,10 @@ function mainGame(){
 function generatemobstats(multiplier){//generates the enemy stats according to the given formula "multiplier"
     mobdef = 1 * multiplier
     mobhp = 20 * multiplier
+    if(occurence === bosses){
+        mobhp = 60 * multiplier;
+        mobmaxhp = 60 * multiplier;
+    }
     mobmaxhp = 20 * multiplier
     mobstr = 1 * multiplier
     mobdmg = (mobstr + LVL) * 2;
@@ -262,7 +267,8 @@ function levelManager(){ //Manages player level.(executed after a player kills s
         LVL++;
         maxHP =(LVL * 100) + (defence * 6);
         HP = maxHP;
-        maxxp = LVL * 130 * 1.3;
+        maxxpmultiplier += 0.3
+        maxxp = LVL * 130 * maxxpmultiplier;
         SP += 1;
         alert(`Congratulations ${playerName} you have advanced to level ${LVL} and have gained 1 Skillpoints.`)
     }
@@ -349,7 +355,7 @@ function rewardsmanager(){//manages and decides what to do with rewards found fr
                     if(descision === 'Bronze Sword' && weaponclass < 1){
                         equipitem();
                         alert(`You equip the ${descision}`);
-                        weaponbonus += 3;
+                        weaponbonus = 3;
                         weaponclass = 1;
                         playerdmg = ((LVL + strenght)* 3)+weaponbonus;
                     }else if(descision === 'Bronze Sword' && weaponclass >=1){
@@ -357,36 +363,36 @@ function rewardsmanager(){//manages and decides what to do with rewards found fr
                     }else if(descision === 'Steel Sword' && weaponclass < 3){
                         equipitem();
                         alert(`You equip the ${descision}`);
-                        weaponbonus = 0;
-                        weaponbonus += 6;
+                        weaponbonus = 6;
+                        weaponclass = 2;
                         playerdmg = ((LVL + strenght)* 3)+weaponbonus;
                     }else if(descision === 'Steel Sword' && weaponclass == 3){
                         discarditem();
                     }else if(descision === 'Diamond Sword'){
                         equipitem();
                         alert(`You equip the ${descision}`);
-                        weaponbonus = 0;
-                        weaponbonus += 11;
+                        weaponbonus = 11;
+                        weaponclass = 3;
                         playerdmg = ((LVL + strenght)* 3)+weaponbonus;
                     }else if(descision === 'Bronze Armour' && armorclass <1){
                         equiparmour();
                         alert(`You equip the ${descision}`);
-                        armorbonus += 3;
+                        armorbonus = 3;
                         armorclass = 1;
                     }else if(descision === 'Bronze Armour' && armorclass >=1){
                         discarditem();
                     }else if(descision === 'Steel Armour' && armorclass < 3){
                         equiparmour();
                         alert(`You equip the ${descision}`);
-                        armorbonus = 0;
-                        armorbonus += 6;
+                        armorbonus = 6;
+                        armorclass = 2;
                     }else if(descision === 'Steel Armour' && armorclass == 3){
                         discarditem();
                     }else if(descision === 'Diamond Armour'){
                         equiparmour();
                         alert(`You equip the ${descision}`);
-                        armorbonus = 0;
-                        armorbonus += 11;
+                        armorbonus = 11;
+                        armorclass = 3;
                     }else{
                         alert(`You pick up the ${descision} it might come in handy..`)
                         movetoinventory();
