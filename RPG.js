@@ -147,13 +147,13 @@ function mainGame(){
 function generatemobstats(multiplier){//generates the enemy stats according to the given formula "multiplier"
     mobdef = 1 * multiplier
     mobhp = 20 * multiplier
+    mobmaxhp = 20 * multiplier
+    mobstr = 1 * multiplier
+    mobdmg = (mobstr + LVL) * 2;
     if(occurence === bosses){
         mobhp = 60 * multiplier;
         mobmaxhp = 60 * multiplier;
     }
-    mobmaxhp = 20 * multiplier
-    mobstr = 1 * multiplier
-    mobdmg = (mobstr + LVL) * 2;
 }
 function fightmob(){//main combat manager
     let multiplier = LVL * 1;
