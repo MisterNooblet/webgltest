@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>100 Steps V2 With UI</title>
+  </head>
+  <body>
+    <div class="nes-container is-dark with-title is-round is-centered">
+      <p class="title" id="playerNameDisplay">!!!!!!!!!!!!</p>
+      <p><img src="/assets/images/icons/heart.png" id="hearticon"><span class="nes-text is-primary">Health : </span> <span class="nes-text" id="healthtext">130/130</span>
+<img src="/assets/images/icons/anger.png" id="angericon" style="margin-left: 30px;"><span class="nes-text is-error">Rage : </span> <span class="nes-text" id="playerRage">0/100</span> 
+      </p>
+      <p id="mainGameBox">
+        You wake up in the middle of a dark forest...
+      </p>
+      <p id="mobstatsbox" style="display: none;"><span class="nes-text is-error" id="mobname">Zombie</span><br/><br/>
+        <span class="nes-text is-primary" style="margin-left: 30px;" id="mobhp">Health : 100/100</span>
+        <span class="nes-text is-success" style="margin-left: 30px;" id="mobdef">Defence : 1</span>
+        <span class="nes-text is-error" style="margin-left: 30px;" id="mobstr">Strength : 1</span>
+    </p>
+      <div
+        style="background-color: #212529; padding: 1rem; display: none;"
+        class="nes-field is-inline"
+        id="playernamefield"
+      > 
+      <br/>
+        <input
+          type="text"
+          id="darkfield"
+          class="nes-input is-dark"
+          placeholder="enter player name here"
+        />
+      </div>
+      <center>
+        <button type="button" id="dialoguebutton" class="nes-btn is-success">
+          Continue...
+        </button>
+        <button style="display: none;" type="button" id="stepbutton" class="nes-btn is-success">
+        step...(100)
+        </button>
+        <button style="display: none;" type="button" id="attackbutton" class="nes-btn is-primary fightbtn">
+            Attack
+            </button>
+            <button style="display: none;" type="button" id="blockbutton" class="nes-btn is-success fightbtn">
+                Block
+                </button>
+                <button style="display: none;" type="button" id="chargebutton" class="nes-btn is-warning fightbtn">
+                    Charge Attack
+                    </button>
+                    <button style="display: none;" type="button" id="ultimatebutton" class="nes-btn is-error fightbtn">
+                        Ultimate
+                        </button>
+                        <span id="fleebuttons" style="display: none;"><button  type="button" id="fightbutton" class="nes-btn is-error fleebtn">
+                            Fight
+                            </button>
+                        <button  type="button" id="fleebutton" class="nes-btn is-warning fleebtn">
+                            Flee
+                            </button>
+                        </span>
+      </center>
+    </div>
+    
+    <div class="nes-container is-rounded is-dark" id="PlayerStatsContainer"><center>
+
+        <p id="skillblock"><span class="nes-text is-warning">Skillpoints: </span><span class="nes-text" id="playerSP">5</span>
+            <span class="nes-text is-primary" style="margin-left: 30px;">Strength: </span> <span class="nes-text" id="strenghttext">5 </span><input type="image"  id="strbutton" src="/assets/images/icons/plusicon.png" class="skillbuttons" />
+            </span>
+           <span class="nes-text is-success" style="margin-left: 30px;">Constitution: </span> <span class="nes-text" id="defence">5 </span><input type="image"  id="defbutton" src="/assets/images/icons/plusicon.png" class="skillbuttons" />
+        <span class="nes-text is-error" style="margin-left: 30px;">Anger: </span> <span class="nes-text" id="Anger">5</span><input type="image" id="ragebutton" src="/assets/images/icons/plusicon.png" class="skillbuttons" /></p>
+            <p><span class="nes-text is-primary">Weapon: </span><span class="nes-text" id="playerWeapon">Fists (0)</span>
+                <span class="nes-text is-success" style="margin-left: 45px;">Armor: </span><span class="nes-text" id="playerArmor">Dirty Rags (0)</span></p>
+                <p><button type="button" class="nes-btn is-success" id="healButton">Health Serum</button><span id="healthamount"> 1 </span>
+                    <button type="button" class="nes-btn is-error" id="rageButton">Rage Serum</button><span id="rageamount"> 1 </span></p>
+                </center>
+    </div>
+    <div class="nes-container is-rounded is-dark" id="PlayerLevelContainter">
+        <center><p><h3 id="playerLevel">LVL 1</h3></p></center>
+        <progress id="xpprogress" class="nes-progress is-warning" value="0" max="130"></progress>
+      </div>
+  </body>
+  <script src="game.js"></script>
+</html>
