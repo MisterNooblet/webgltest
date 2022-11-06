@@ -492,7 +492,7 @@ function rewardsmanager() {
     equiparmour();
   } else if (descision === 'Steel Armour' && armorclass == 3) {
     discarditem();
-  } else if (descision === 'Diamond Armour') {
+  } else if (descision === 'Diamond Armor') {
     armorbonus = 11;
     armorclass = 3;
     equiparmour();
